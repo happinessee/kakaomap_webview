@@ -209,7 +209,7 @@ $overlayStyle
 		
 		if(${markerImageURL.isNotEmpty}){
 		  let imageSrc = '$markerImageURL'
-		  let imageSize = new kakao.maps.Size(50, 50)
+		  let imageSize = new kakao.maps.Size(100, 100)
 		  let imageOption = {offset: new kakao.maps.Point(0, 0)}
 		  markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
 		}
