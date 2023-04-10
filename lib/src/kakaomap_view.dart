@@ -198,7 +198,7 @@ class KakaoMapView extends StatelessWidget {
 <html>
 <head>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes\'>
-  <script type="text/javascript" src='https://dapi.kakao.com/v2/maps/sdk.js?autoload=true&appkey=$kakaoMapKey'></script>
+  <script type="text/javascript" src='https://dapi.kakao.com/v2/maps/sdk.js?autoload=true&appkey=$kakaoMapKey&libraries=services'></script>
 $overlayStyle
 </head>
 <body style="padding:0; margin:0;">
@@ -217,8 +217,8 @@ $overlayStyle
 		
 		if(${markerImageURL.isNotEmpty}){
 		  let imageSrc = '$markerImageURL'
-		  let imageSize = new kakao.maps.Size(50, 50)
-		  let imageOption = {offset: new kakao.maps.Point(0, 0)}
+		  let imageSize = new kakao.maps.Size(49, 42)
+		  let imageOption = {offset: new kakao.maps.Point(21, 49)}
 		  markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
 		}
 		const markerPosition  = new kakao.maps.LatLng($lat, $lng);
