@@ -157,7 +157,7 @@ class KakaoMapView extends StatelessWidget {
     }
 
     if (getMarkerLocation != null) {
-      channels.add(JavaScriptChannel(
+      channels.add(JavascriptChannel(
           name: 'getMarkerLocation', onMessageReceived: getMarkerLocation!));
     }
 
