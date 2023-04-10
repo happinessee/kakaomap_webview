@@ -64,6 +64,8 @@ class KakaoMapView extends StatelessWidget {
   /// North East, South West lat, lang will be updated when the move event is occurred
   final void Function(JavascriptMessage)? boundaryUpdate;
 
+  final void Function(JavascriptMessage)? getMarkerLocation;
+
   /// [KakaoFigure] is required [KakaoFigure.path] to make polygon.
   /// If null, it won't be enabled
   final KakaoFigure? polygon;
@@ -105,6 +107,7 @@ class KakaoMapView extends StatelessWidget {
       this.zoomChanged,
       this.cameraIdle,
       this.boundaryUpdate,
+      this.getMarkerLocation,
       this.markerImageURL = '',
       this.customScript,
       this.mapWidgetKey,
@@ -151,6 +154,11 @@ class KakaoMapView extends StatelessWidget {
     if (boundaryUpdate != null) {
       channels.add(JavascriptChannel(
           name: 'boundaryUpdate', onMessageReceived: boundaryUpdate!));
+    }
+
+    if (getMarkerLocation != null) {
+      channels.add(JavaScriptChannel(
+          name: 'getMarkerLocation', onMessageReceived: getMarkerLocation!));
     }
 
     if (channels.isEmpty) {
@@ -285,6 +293,14 @@ $overlayStyle
         boundaryUpdate.postMessage(JSON.stringify(boundary));
       });
 		}
+
+    if (${getMarkerLocation != null}){
+      kakao.maps.event.addListener(map, 'get_marker_location', function() {
+        const newLatLng = marker.getPosition();
+
+        getMarkerLocation.postMessage(JSON.stringify(newLatLng));
+      });
+    }
 		
 		if($showZoomControl){
 		  const zoomControl = new kakao.maps.ZoomControl();
