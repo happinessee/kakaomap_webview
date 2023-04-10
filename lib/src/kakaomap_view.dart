@@ -297,8 +297,12 @@ $overlayStyle
     if (${getMarkerLocation != null}){
       kakao.maps.event.addListener(marker, 'dragend', function() {
         const newLatLng = marker.getPosition();
+        const myMarkerLatLng = {
+          lat: newLatLng.getLat(),
+          lng: newLatLng.getLng()
+        }
 
-        getMarkerLocation.postMessage(JSON.stringify(newLatLng));
+        getMarkerLocation.postMessage(JSON.stringify(myMarkerLatLng));
       });
     }
 		
